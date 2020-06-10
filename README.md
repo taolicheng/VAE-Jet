@@ -1,5 +1,7 @@
 # VAE-Jet
 
+Variational Autoencoder for jet physics at the Large Hadron Collider. Low-level information of jet constituents are taken as input. 
+
 ### Dependencies
 
 * tensorflow
