@@ -6,7 +6,7 @@ Due to historical reasons, versions for tensorflow v1 and v2 are both presented.
 
 ### Dependencies
 
-* tensorflow
+* tensorflow: `tensorflow-gpu 1.13.1` or `tensorflow-gpu 2.1.0`
 * (ROOT): only for specific parts of the code.
 
 ### Training
