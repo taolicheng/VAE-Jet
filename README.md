@@ -1,6 +1,6 @@
 # VAE-Jet
 
-<img src="https://github.com/taolicheng/VAE-Jet/tree/master/figs/VAE.jpg" width="600" height="400">
+<img src="https://github.com/taolicheng/VAE-Jet/blob/master/figs/VAE.jpg" width="700" height="360">
 
 Variational Autoencoder for jet physics at the Large Hadron Collider. Low-level information of jet constituents are taken as input. We employ simple fully connected networks for embedding architecture. (There is also a LSTM alternative in tensorflow v1). Inputs should be pt-ordered four-vector momenta of jet constituents.
 
