@@ -2,7 +2,7 @@
 
 <img src="https://github.com/taolicheng/VAE-Jet/blob/master/figs/VAE.jpg" width="700" height="360">
 
-Variational Autoencoder for jet physics at the Large Hadron Collider. Low-level information of jet constituents are taken as input. We employ simple fully connected networks for embedding architecture. (There is also a LSTM alternative in tensorflow v1). Inputs should be pt-ordered four-vector momenta of jet constituents.
+Variational Autoencoder for jet physics at the Large Hadron Collider. Low-level information of jet constituents are taken as input. We employ simple fully connected networks for embedding architecture. (There is also a LSTM alternative in tensorflow v1). Inputs should be pt-ordered four-vector momenta of jet constituents. VAE is trained on background QCD jets. Then the trained VAE is used to tag anomalous jets as an anomaly detector.
 
 Due to historical reasons, versions for tensorflow v1 and v2 are both presented. In tf2, all training components including basic VAE, DisCo-VAE and OE-VAE are facilitated.
 
