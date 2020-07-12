@@ -8,6 +8,14 @@ Variational Autoencoder for jet physics at the Large Hadron Collider. Low-level 
 
 Due to historical reasons, versions for tensorflow v1 and v2 are both presented. In tf2, all training components including basic VAE, DisCo-VAE and OE-VAE are facilitated.
 
+```
+└── tf2
+    ├── disco.py
+    ├── train_disco.py # DisCo-VAE
+    ├── train.py       # beta-VAE
+    └── vae.py
+```
+
 ### Dependencies
 
 * tensorflow: `tensorflow-gpu 1.13.1` or `tensorflow-gpu 2.1.0`
