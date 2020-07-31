@@ -37,7 +37,8 @@ Due to historical reasons, versions for tensorflow v1 and v2 are both presented.
   * options:
      * lam: lambda for OE loss
      * oe_type: 1 MSE-OE; 2 KL-OE
-     * margin: `margin` for KL-OE
+     * mse_oe_type: 1： sigmoid 2: margin
+     * margin: `margin` for KL-OE or type-2 MSE-OE
 
 ### Testsets
 
