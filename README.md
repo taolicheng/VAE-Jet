@@ -1,6 +1,7 @@
 # VAE-Jet
 
 Code repository for [Variational Autoencoders for Anomalous Jet Tagging](https://arxiv.org/abs/2007.01850).
+Talk links: [part1](https://docs.google.com/presentation/d/1t_W5YVQ3GBD0LLw3-wJ96WhtlOJ9sTh9jNY4pGUwl6Q/edit?usp=sharing), [part2](https://docs.google.com/presentation/d/1a8Ej-D2EGTyBdP1xLXqyW4Fz9MLNB3qLd65VW0yAGkc/edit?usp=sharing)
 
 <img src="https://github.com/taolicheng/VAE-Jet/blob/master/figs/VAE.jpg" width="700" height="360">
 
