@@ -1,6 +1,7 @@
 # VAE-Jet
 
 Code repository for [Variational Autoencoders for Anomalous Jet Tagging](https://arxiv.org/abs/2007.01850).
+Talk links: [part1](https://docs.google.com/presentation/d/1t_W5YVQ3GBD0LLw3-wJ96WhtlOJ9sTh9jNY4pGUwl6Q/edit?usp=sharing), [part2](https://docs.google.com/presentation/d/1a8Ej-D2EGTyBdP1xLXqyW4Fz9MLNB3qLd65VW0yAGkc/edit?usp=sharing)
 
 <img src="https://github.com/taolicheng/VAE-Jet/blob/master/figs/VAE.jpg" width="700" height="360">
 
@@ -12,7 +13,8 @@ Due to historical reasons, versions for tensorflow v1 and v2 are both presented.
 └── tf2
     ├── disco.py
     ├── train_disco.py # DisCo-VAE
-    ├── train.py       # beta-VAE
+    ├── train_oe_resample.py # OE-VAE
+    ├── train.py # beta-VAE
     └── vae.py
 ```
 
@@ -29,6 +31,15 @@ Due to historical reasons, versions for tensorflow v1 and v2 are both presented.
 * Options
   * pt-scaling: `--pt_scaling`
   * annealing training: `--annealing`
+
+#### tf2
+* OE-VAE:
+`./train_oe_resample.py [path to save the model] [pre-trained model, set to null for scratch training]  --n_train [sample number of training set] --beta 0.1 --lam 2.0 --epochs 100 --oe_type 2 --margin 1`
+  * options:
+     * lam: lambda for OE loss
+     * oe_type: 1 MSE-OE; 2 KL-OE
+     * mse_oe_type: 1： sigmoid 2: margin
+     * margin: `margin` for KL-OE or type-2 MSE-OE
 
 ### Testsets
 
