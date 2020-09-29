@@ -1,3 +1,6 @@
+# Reference: Gregor Kasieczka, David Shih. "DisCo Fever: Robust Networks Through Distance Correlation", arXiv:2001.05310 
+# Code from https://github.com/gkasieczka/DisCo
+
 import tensorflow as tf
 
 def distance_corr(var_1, var_2, normedweight, power=1):
