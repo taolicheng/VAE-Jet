@@ -3,7 +3,7 @@
 Code repository for [Variational Autoencoders for Anomalous Jet Tagging](https://arxiv.org/abs/2007.01850).
 Talk links: [part1](https://docs.google.com/presentation/d/1t_W5YVQ3GBD0LLw3-wJ96WhtlOJ9sTh9jNY4pGUwl6Q/edit?usp=sharing), [part2](https://docs.google.com/presentation/d/1a8Ej-D2EGTyBdP1xLXqyW4Fz9MLNB3qLd65VW0yAGkc/edit?usp=sharing)
 
-<img src="https://github.com/taolicheng/VAE-Jet/blob/master/figs/VAE.jpg" width="700" height="360">
+<img src="https://github.com/taolicheng/VAE-Jet/blob/master/figs/VAE_schematic.png" width="700" height="360">
 
 Variational Autoencoder for jet physics at the Large Hadron Collider. Low-level information of jet constituents are taken as input. We employ simple fully connected networks for embedding architecture. (There is also a LSTM alternative in tensorflow v1). Inputs should be pt-ordered four-vector momenta of jet constituents. VAE is trained on background QCD jets. Then the trained VAE is used to tag anomalous jets as an anomaly detector.
 
