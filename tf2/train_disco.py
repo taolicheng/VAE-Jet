@@ -36,6 +36,22 @@ def annealing_fn(epoch, weight):
 
     return weight   
 
+def annealing_fn_2steps(epoch, weight):
+    start=10
+    annealtime=10
+    if epoch > start and epoch < start+annealtime :
+        weight=min(weight + (1.0/ (annealtime-1)), 1.0)
+
+    if epoch == start+2*annealtime:
+        weight=0
+
+    if epoch > start+2*annealtime and epoch < start+3*annealtime:
+        weight=min(weight + (1.0/ (annealtime-1)), 1.0)
+
+    if epoch >= start+4*annealtime:
+        weight = 1.0
+
+    return weight  
 
 @click.command()
 @click.argument("model_path")
@@ -45,7 +61,7 @@ def annealing_fn(epoch, weight):
 #@click.option("--input_dim", default=80)
 @click.option("--epochs", default=50)
 @click.option("--annealing", is_flag=True, default=False)
-def train(model_path,n_train=-1, beta=0.1, lam=100.0, epochs=50, annealing=False):
+def train(model_path,n_train=-1, beta=0.1, lam=100.0, epochs=100, annealing=False):
     from train_oe import load_data
     qcd_train, scaler=load_data()
 
@@ -78,7 +94,12 @@ def train(model_path,n_train=-1, beta=0.1, lam=100.0, epochs=50, annealing=False
     vae = VariationalAutoEncoder(80, 10)
     mse_loss_fn = tf.keras.losses.MeanSquaredError(reduction=tf.keras.losses.Reduction.NONE)
     #mse_loss_fn = tf.keras.losses.MeanSquaredError()
-    optimizer = tf.keras.optimizers.Adam()
+    #optimizer = tf.keras.optimizers.Adam()
+    
+    num_steps = int(n_train*0.8/100)
+    lr_fn = tf.keras.optimizers.schedules.PiecewiseConstantDecay([30*num_steps],
+        [1e-3, 1e-4])
+    optimizer = tf.keras.optimizers.Adam(learning_rate=lr_fn)
 
     train_loss_metric=tf.keras.metrics.Mean()
     val_loss_metric=tf.keras.metrics.Mean()
@@ -117,7 +138,7 @@ def train(model_path,n_train=-1, beta=0.1, lam=100.0, epochs=50, annealing=False
         #    lam_weight = 0.0
             
         if annealing:
-            lam_weight=annealing_fn(epoch, lam_weight)    
+            lam_weight=annealing_fn_2steps(epoch, lam_weight)    
             
         for step, (train_batch, m_batch) in enumerate(train_in_dataset):
             with tf.GradientTape() as tape:
