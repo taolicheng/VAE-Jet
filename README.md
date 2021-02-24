@@ -30,16 +30,24 @@ Due to historical reasons, versions for tensorflow v1 and v2 are both presented.
 `./train_betaVAE.py --train [path of training dataset] --model [path to save the model] --train_number [sample number of training set] --epochs 100 --vae 'fcn' --beta 0.1`
 * Options
   * pt-scaling: `--pt_scaling`
-  * annealing training: `--annealing`
+  * annealing training (slowly increase the beta weight across several interations): `--annealing`
+  * beta: KL divergence weight `beta` for beta-VAE
 
 #### tf2
 * OE-VAE:
-`./train_oe_resample.py [path to save the model] [pre-trained model, set to null for scratch training]  --n_train [sample number of training set] --beta 0.1 --lam 2.0 --epochs 100 --oe_type 2 --margin 1`
-  * options:
-     * lam: lambda for OE loss
+`./train_oe_resample.py [path to save the model] [pre-trained model, set to null for scratch training]  --n_train [sample number of training set] --beta 0.1 --lam 2.0 --epochs 50 --oe_type 2 --margin 1`
+  * Options:
+     * beta: KL divergence weight `beta` for beta-VAE
+     * lam: weight lambda for OE loss
      * oe_type: 1 MSE-OE; 2 KL-OE
      * mse_oe_type: 1： sigmoid 2: margin
      * margin: `margin` for KL-OE or type-2 MSE-OE
+
+* DisCo-VAE:
+`./train_disco.py [path to save the model] --n_train [sample number of training set] --beta 0.1 --lam 100.0 --epochs 100 --annealing`
+    * Options:
+     * beta: KL divergence weight `beta` for beta-VAE
+     * lam: DisCo regularizer weight  
 
 ### Testsets
 
