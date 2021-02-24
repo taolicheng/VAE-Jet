@@ -2,12 +2,14 @@
 
 # Taoli Cheng
 
+import h5py
 import pickle
 import click
 import tensorflow as tf
 #tf.keras.backend.set_floatx('float64') # to solve data type conflict between float32 and float64
 from vae import VariationalAutoEncoder
 from disco import distance_corr
+from train import load_data
 
 from sklearn.model_selection import train_test_split
 
@@ -62,15 +64,13 @@ def annealing_fn_2steps(epoch, weight):
 @click.option("--epochs", default=50)
 @click.option("--annealing", is_flag=True, default=False)
 def train(model_path,n_train=-1, beta=0.1, lam=100.0, epochs=100, annealing=False):
-    from train_oe import load_data
+    
     qcd_train, scaler=load_data()
 
     # read in mass
-    import h5py
     DATA_DIR="/network/tmp1/taoliche/data/VAE_Final/"
     f=h5py.File(DATA_DIR+"qcd_preprocessed.h5", "r")
     m=f["obs"][:,3]
-
 
     # Prepare training and OE datasets
     #n_train=200000
@@ -89,6 +89,8 @@ def train(model_path,n_train=-1, beta=0.1, lam=100.0, epochs=100, annealing=Fals
     val_in_dataset=tf.data.Dataset.zip((val_in_dataset, m_val_in_dataset))
     val_in_dataset = val_in_dataset.shuffle(buffer_size=1024).batch(100)
 
+    f.close()
+    
     # Quick implementing Mass-Deco (var_1 = m, var_2=vae_recon)
     #vae = VariationalAutoEncoder(80, 64, 10)
     vae = VariationalAutoEncoder(80, 10)
@@ -126,16 +128,6 @@ def train(model_path,n_train=-1, beta=0.1, lam=100.0, epochs=100, annealing=Fals
         val_loss_metric.reset_states()
         dc_metric.reset_states()
         dc_val_metric.reset_states()
-
-
-        # annealing on lambda
-        #if epoch % 10 == 0:
-        #    lam_weight=0.0
-        #else:
-        #    lam_weight += 1.0/9.0
-            
-        #if epoch < 10:
-        #    lam_weight = 0.0
             
         if annealing:
             lam_weight=annealing_fn_2steps(epoch, lam_weight)    
