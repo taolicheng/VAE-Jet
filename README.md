@@ -30,26 +30,31 @@ Due to historical reasons, versions for tensorflow v1 and v2 are both presented.
 * To train the model:
 `./train_betaVAE.py --train [path of training dataset] --model [path to save the model] --train_number [sample number of training set] --epochs 100 --vae 'fcn' --beta 0.1`
 * Options
-  * pt-scaling: `--pt_scaling`
+  * `pt-scaling`: `--pt_scaling`
   * annealing training (slowly increase the beta weight across several interations): `--annealing`
-  * beta: KL divergence weight `beta` for beta-VAE
+  * `beta`: KL divergence weight `beta` for beta-VAE
 
 #### tf2
 *Currently one needs to specify the data paths (QCD training samples and outlier samples) in `train_oe_resample.py` manually. This will be fixed soon.*
 * OE-VAE:
-`./train_oe_resample.py [path to save the model] [pre-trained model, set to null for scratch training]  --n_train [sample number of training set] --beta 0.1 --lam 2.0 --epochs 50 --oe_type 2 --margin 1`
+```
+./train_oe_resample.py [path to save the model] [pre-trained model, set to null for scratch training]  --n_train [sample number of training set] --beta 0.1 --lam 2.0 --epochs 50 --oe_type 2 --margin 1
+```
   * Options:
-     * beta: KL divergence weight `beta` for beta-VAE
-     * lam: weight lambda for OE loss
-     * oe_type: 1 MSE-OE; 2 KL-OE
-     * mse_oe_type: 1： sigmoid 2: margin
-     * margin: `margin` for KL-OE or type-2 MSE-OE
+     * `beta`: KL divergence weight `beta` for beta-VAE
+     * `lam`: weight lambda for OE loss
+     * to apply early stopping: `--early_stopping`
+     * `oe_type`: 1 MSE-OE; 2 KL-OE
+     * `mse_oe_type`: 1： sigmoid 2: margin
+     * `margin`: `margin` for KL-OE or type-2 MSE-OE
 
 * DisCo-VAE:
-`./train_disco.py [path to save the model] --n_train [sample number of training set] --beta 0.1 --lam 100.0 --epochs 100 --annealing`
-    * Options:
-     * beta: KL divergence weight `beta` for beta-VAE
-     * lam: DisCo regularizer weight  
+```
+./train_disco.py [path to save the model] --n_train [sample number of training set] --beta 0.1 --lam 100.0 --epochs 100 --annealing
+```
+   * Options:
+     * `beta`: KL divergence weight `beta` for beta-VAE
+     * `lam`: DisCo regularizer weight  
 
 ### Testsets
 
