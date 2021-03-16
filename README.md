@@ -35,7 +35,7 @@ Due to historical reasons, versions for tensorflow v1 and v2 are both presented.
         * `beta`: KL divergence weight `beta` for beta-VAE
 
 #### tf2
-*Currently one needs to specify the data paths (QCD training samples and outlier samples) in `train_oe_resample.py` manually. This will be fixed soon.*
+*Currently one needs to specify the data paths (QCD training samples in `utils` and outlier samples in `train_oe_resample.py`)  manually. This will be fixed soon.*
 
 * OE-VAE: `./train_oe_resample.py [path to save the model] [pre-trained model, set to null for scratch training]  --n_train [sample number of training set] --beta 0.1 --lam 2.0 --epochs 50 --oe_type 2 --margin 1`
    * Options:
