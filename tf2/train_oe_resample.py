@@ -16,7 +16,6 @@ import click
 import pickle
 import h5py
 import numpy as np
-from hep_ml import reweight  
 
 from sklearn.preprocessing import RobustScaler
 from sklearn.model_selection import train_test_split
@@ -157,13 +156,12 @@ def train_oe(model_path, pretrained_path, n_train=-1, beta=1.0, lam=2.0, input_d
     #scenario=1 # 1: from scratch; 2: fine-tuning
 
     ############# Define the Model: with Outlier Exposure ###############
-    original_dim = 80
     ############# Scenario I: from scratch
     if oe_scenario == 1:
-        vae_oe = VariationalAutoEncoder(original_dim, hidden_dim)
+        vae_oe = VariationalAutoEncoder(input_dim, hidden_dim)
     ############# Scenario II: fine-tune
     elif oe_scenario == 2:
-        vae_oe = VariationalAutoEncoder(original_dim, hidden_dim)
+        vae_oe = VariationalAutoEncoder(input_dim, hidden_dim)
         vae_oe.load_weights(pretrained_path)
     
     optimizer = tf.keras.optimizers.Adam(lr=1e-3)
