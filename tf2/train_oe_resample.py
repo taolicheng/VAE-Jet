@@ -5,6 +5,8 @@
 
 # TODOs
 # - customize data path
+# - remove annealing option (as is defaultly implemented)
+# - activate input_dim and latent_dim arguments (currently only working for default values)  (also should fix train.py and train_disco.py)
 
 import tensorflow as tf
 #tf.keras.backend.set_floatx('float64')
