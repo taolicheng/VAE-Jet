@@ -9,7 +9,7 @@ import tensorflow as tf
 #tf.keras.backend.set_floatx('float64') # to solve data type conflict between float32 and float64
 from vae import VariationalAutoEncoder
 from disco import distance_corr
-from train import load_data ####TODO: move into utils
+from utils import load_data
 
 from sklearn.model_selection import train_test_split
 
