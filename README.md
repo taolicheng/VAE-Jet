@@ -20,7 +20,7 @@ Due to historical reasons, versions for tensorflow v1 and v2 are both presented.
 
 ### Dependencies
 
-* ``tensorflow`: `tensorflow-gpu 1.13.1` or `tensorflow-gpu 2.1.0`
+* `tensorflow`: `tensorflow-gpu 1.13.1` or `tensorflow-gpu 2.1.0`
 * `scikit-learn`
 * (`ROOT`): only for specific parts (`preprocessing`) of the code.
 
