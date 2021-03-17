@@ -39,7 +39,8 @@ def load_data():
     pt_scaling=False
 
     # training data path
-    f=h5py.File("./data/AE_training_qcd_preprocessed_realignphi.h5", "r")
+    DATA_DIR="/network/tmp1/taoliche/data/VAE_Final/"
+    f=h5py.File(DATA_DIR+"qcd_preprocessed.h5", "r")
 
     # mass labels for mass-decorrelation
     #mass_labels=f['mass_labels']

@@ -131,10 +131,12 @@ def train_oe(model_path, pretrained_path, n_train=-1, beta=1.0, lam=2.0, input_d
     ######################################################
     #n_train=200000
     #n_oe=40000
-    n_oe=int(len(x_train_in)/4)
+    ratio = 4
+    n_oe = int(n_train/ratio)
     x_train_oe = oe_data[:n_oe]
     
-    weights=np.ones(n_oe)
+    weights = np.ones(n_oe) # to be defined in reweighting scenarios
+    x_train_oe, x_val_oe, weights_train, weights_val = train_test_split(oe_data[:n_oe], weights, test_size=0.2)
     ######################################################
     train_in_dataset = tf.data.Dataset.from_tensor_slices(x_train_in)
     train_in_dataset = train_in_dataset.shuffle(buffer_size=1024).batch(100)
@@ -252,7 +254,7 @@ def train_oe(model_path, pretrained_path, n_train=-1, beta=1.0, lam=2.0, input_d
                 if oe_type == 1:
                 # input space
                     reconstructed_oe=vae_oe(x_batch_oe)
-                    loss_oe=loss_oe_fn(x_batch_train, x_batch_oe, reconstructed, reconstructed_oe, weights_oe=weights_batch,  mse_oe_type=mse_oe_type, margin=margin)
+                    loss_oe=loss_mse_oe_fn(x_batch_train, x_batch_oe, reconstructed, reconstructed_oe, weights_oe=weights_batch,  mse_oe_type=mse_oe_type, margin=margin)
                     #loss = loss_in - lam*loss_oe
                     loss = loss_in - weight_lam*lam*loss_oe
                     
@@ -290,7 +292,7 @@ def train_oe(model_path, pretrained_path, n_train=-1, beta=1.0, lam=2.0, input_d
             if oe_type == 1:
                 # input space
                 reconstructed_oe = vae_oe(x_batch_oe)
-                val_loss_oe = loss_oe_fn(x_batch_val, x_batch_oe, reconstructed, reconstructed_oe, weights_oe=weights_batch,  mse_oe_type =  mse_oe_type, margin=margin)
+                val_loss_oe = loss_mse_oe_fn(x_batch_val, x_batch_oe, reconstructed, reconstructed_oe, weights_oe=weights_batch,  mse_oe_type =  mse_oe_type, margin=margin)
                 val_loss = val_loss_in - weight_lam*lam*val_loss_oe
                     
                 # latent space KL
