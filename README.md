@@ -53,7 +53,8 @@ Due to historical reasons, versions for tensorflow v1 and v2 are both presented.
 
 ### Testsets
 
-* We released a series of test sets for general performance examination of anomalous jet tagging: https://zenodo.org/record/3774560#.XuG1fs9KgkJ, in which boosted W jets (2-prong), Top jets (3-prong), and Higgs jets (THDM Heavy Higgs, 4-prong decayed) are included.
+* We released a series of test sets for general performance examination of anomalous jet tagging: https://zenodo.org/record/4614656#.YFUACe1KgkI, in which boosted W jets (2-prong), Top jets (3-prong), and Higgs jets (THDM Heavy Higgs, 4-prong decayed) are included.
+* The QCD background samples can be found [here](https://zenodo.org/record/4641460#.YGVEue1KgkK).
 
 ### Citation
 
